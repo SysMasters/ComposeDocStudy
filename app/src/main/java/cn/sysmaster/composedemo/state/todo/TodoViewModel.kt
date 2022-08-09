@@ -23,7 +23,7 @@ class TodoViewModel : ViewModel() {
 
     // 当前正在编辑的TodoItem对象
     val currentEditItem: TodoItem?
-        get() = todoItems[currentEditPosition]
+        get() = todoItems.getOrNull(currentEditPosition)
 
     fun addItem(item: TodoItem) {
         todoItems.add(item)
@@ -36,6 +36,17 @@ class TodoViewModel : ViewModel() {
 
     fun onEditDone() {
         currentEditPosition = -1
+    }
+
+    fun onEditItemSelected(item: TodoItem) {
+        currentEditPosition = todoItems.indexOf(item)
+    }
+
+    fun onEditItemChange(item: TodoItem) {
+        if (currentEditItem == null) {
+            return
+        }
+        todoItems[currentEditPosition] = item
     }
 
 }

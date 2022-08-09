@@ -51,15 +51,15 @@ fun TodoScreen(
             items(items) { todo ->
                 if (currentlyEditing?.id == todo.id) {
                     TodoItemInlineEditor(
-                        item = todo,
-                        onEditItemChange = {},
-                        onEditDone = { },
-                        onRemoveItem = {}
+                        item = currentlyEditing,
+                        onEditItemChange = onEditItemChange,
+                        onEditDone = onEditDone,
+                        onRemoveItem = { onRemoveItem(todo) }
                     )
                 } else {
                     TodoRow(
                         item = todo,
-                        onItemClicked = onRemoveItem,
+                        onItemClicked = { onStartEdit(todo) },
                         modifier = Modifier.fillParentMaxWidth()
                     )
                 }

@@ -40,12 +40,14 @@ class TodoActivity : ComponentActivity() {
 
     @Composable
     private fun Foo() {
-        val items by viewModel.todoItems.observeAsState(listOf())
-
         TodoScreen(
-            items = items,
-            onAddItem = { viewModel.addItem(it) },
-            onRemoveItem = { viewModel.removeItem(it) }
+            items = viewModel.todoItems,
+            currentlyEditing = viewModel.currentEditItem,
+            onAddItem = viewModel::addItem,
+            onRemoveItem = viewModel::removeItem,
+            onStartEdit = viewModel::onEditItemSelected,
+            onEditItemChange = viewModel::onEditItemChange,
+            onEditDone = viewModel::onEditDone
         )
     }
 }
