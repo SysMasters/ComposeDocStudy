@@ -10,3 +10,4 @@ rootProject.name = "ComposeDemo"
 include ':app'
 include ':lib'
 include ':material'
+include ':finished-animation'
